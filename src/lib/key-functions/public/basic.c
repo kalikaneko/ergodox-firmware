@@ -28,6 +28,8 @@
 
 // ----------------------------------------------------------------------------
 
+extern uint8_t keyboard_leds;
+
 /*
  * [name]
  *   Press|Release
@@ -233,6 +235,7 @@ void kbfun_layer_pop_1(void) {
  *   the top of the stack, and record the id of that layer element
  */
 void kbfun_layer_push_2(void) {
+    keyboard_leds = keyboard_leds | 0x01;
 	layer_push(2);
 }
 
@@ -257,6 +260,7 @@ void kbfun_layer_sticky_2  (void) {
  *   touching any other elements)
  */
 void kbfun_layer_pop_2(void) {
+	keyboard_leds = keyboard_leds & ~(uint8_t)0x01;
 	layer_pop(2);
 }
 
